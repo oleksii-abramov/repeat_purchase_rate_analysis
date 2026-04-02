@@ -15,7 +15,7 @@ This project was created to answer questions related to the repeat purchase rate
 
 # Analysis
 
-![Dashboard](assets\dashboard.gif)
+![Dashboard](assets/dashboard.gif)
 
 ## How many days pass between the first and second order?
 
