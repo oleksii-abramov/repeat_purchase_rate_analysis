@@ -1,94 +1,69 @@
 # Overview
+This project analyses how often customers place a second order and how long it takes, by yearly cohort (2020–2022) and by customer value group.
 
-This project was created to answer questions related to the repeat purchase rate (RPR) in e-commerce.
-
-## Questions to Answer
-
-1. How many days pass between the first and second order for each customer group by year?
-2. What is the repeat purchase rate for each customer group by year?
+## Key Findings
+- The 12-month repeat purchase rate (RPR) rose from 5.44% (2020 cohort) to 19.84% (2021) and 21.88% (2022). Overall, 18.32% of 16,704 customers returned (3,061 customers).
+- The high-value group (top 25% of customers by first-year revenue) has the highest rate: 42.08% in 2022 against 4.48% for the low-value group (see Limitations).
+- Repeat orders are spread fairly evenly over the first year, about 1.6–1.7% of cohort customers per month in every window. About 82% of customers did not return within 12 months.
 
 ## Tools Used
-
-- SQL for data extraction and preparation
-- Python for data cleaning and sorting
-- Power BI for data visualization
+- SQL 
+- Python 
+- Power BI
 
 # Analysis
 
 ![Dashboard](assets/dashboard.gif)
 
-## How many days pass between the first and second order?
+### 12-month repeat purchase rate by cohort and customer group
 
-Overall, it takes **314 days in median** for customers to make a second purchase.
+| Cohort | All | High value | Medium value | Low value |
+|--------|-----|-----------|--------------|-----------|
+| 2020 | 5.44% | 13.46% | 3.76% | 0.79% |
+| 2021 | 19.84% | 39.02% | 18.06% | 4.20% |
+| 2022 | 21.88% | 42.08% | 20.47% | 4.48% |
 
-### 2020
-In **2020**, the majority of customers made their second order **between 400 and 1100 days**, with a **median of 765 days**.
+The window is the same for every cohort (12 months from the first order), so the rates are comparable across years. The reason for the jump from 2020 to 2021 cannot be seen in this data.
 
-The **high-value group** made purchases more evenly over time, with a **median of 671 days**. Other groups typically made their second purchase after around **350 days**, with a **median of 783 days for the medium-value group** and **820 days for the low-value group**.
+### Timing of repeat orders
+Share of cohort customers (2020–2022) with a repeat order in each window after the first order:
 
-### 2021
-In **2021**, the majority of customers made their second order **before 600 days**, with a **median of 373 days**.
+| Window | Customers | Share | Share per month |
+|--------|-----------|-------|-----------------|
+| 0–1 month | 265 | 1.59% | 1.59% |
+| 1–3 months | 574 | 3.44% | 1.72% |
+| 3–6 months | 844 | 5.05% | 1.68% |
+| 6–12 months | 1,646 | 9.85% | 1.64% |
 
-The **high-value group** in most cases made a second purchase **before 400 days**, after which there was a significant drop, with a **median of 261 days**.
+Share = customers with a repeat order in the window ÷ 16,704 cohort customers. Share per month = share ÷ window length in months. A customer with orders in several windows is counted in each, so the windows add up to more than the 3,061 returning customers.
 
-The **medium-value group** made purchases relatively evenly **until around 650 days**, after which the number gradually decreased. The **median for this group is 399 days**.
+The 6–12 month window has the largest share only because it is the longest. Per month, the share is almost constant.
+### Days between first and second order
+Median days among customers who made a second order (orders up to 31 Dec 2023). Overall median: 314 days.
 
-The **low-value group** generally made their second purchase **between 350 and 600 days**, with a **median of 529 days**.
+| Cohort | All | High value | Medium value | Low value |
+|--------|-----|-----------|--------------|-----------|
+| 2020 | 765 | 671 | 783 | 820 |
+| 2021 | 373 | 261 | 399 | 529 |
+| 2022 | 224 | 177 | 243 | 406 |
 
-### 2022
-In **2022**, the majority of customers made their second purchase **before the 400-day mark**, with a **median of 224 days**, after which there was a significant drop.
-
-For the **high-value group**, there is a gradual decline in purchases **up to around 350 days**, followed by a sharp drop. The **median is 177 days**.
-
-The **medium-value group** shows a gradual decline **up to around 450 days**, followed by a sharp drop, with a **median of 243 days**.
-
-Most of the **low-value group** made their second purchase **between 350 and 500 days**, with a **median of 406 days**.
-
-### Key Insight
-The time between the first and second purchase **decreases significantly from 2020 to 2022**, especially for **high-value customers**, suggesting improved customer retention over time.
-
-## What is the repeat purchase rate?
-
-Overall, **18.32% of customers repurchased**, with the majority of repeat purchases occurring within the **6–12 month period**.
-
-### 2020
-In **2020**, **5.44%** of customers repurchased. The **high-value group** had the highest rate at **13.46%**, while the **medium-value** and **low-value groups** had **3.76%** and **0.79%**, respectively.
-
-All groups showed peak in repeat purchase rate around the **6–12 month period**, except for the low-value group, where the rate remained relatively consistent across all periods.
-
-### 2021
-In **2021**, the repeat purchase rate increased to **19.84%**. The **high-value group** led with **39.02%**, followed by the **medium-value group** at **18.06%**, and the **low-value group** at **4.20%**.
-
-All groups showed that the majority of repeat purchases occurred within the **6–12 month period**.
-
-### 2022
-In **2022**, the repeat purchase rate further increased to **21.88%**. The **0–6 month period** showed growth compared to 2021, while the **6–12 month period** was slightly lower.
-
-The **high-value group** reached **42.08%**, the **medium-value group** **20.47%**, and the **low-value group** **4.48%**.
-
-Most repeat purchases **peaked in the 6–12 month period**.
-
-### Key Insight
-The repeat purchase rate **grew significantly from 2020 to 2022**, driven primarily by **high-value customers**, while the **6–12 month period** consistently remains the key window for repeat purchases.
-
-# Conclusions and Recommendations
-
-Customer retention improved significantly from 2020 to 2022, both in terms of repeat purchase rate and time to second purchase.
-
-The repeat purchase rate increased from **5.44% in 2020** to **21.88% in 2022**, while the time between the first and second order decreased from a median of **765 days to 224 days**. This indicates that customers are returning both **more frequently and faster** over time.
-
-High-value customers consistently outperform other customer groups, showing the **highest repeat purchase rates** and the **shortest time to second purchase**. By 2022, their repeat rate reached **42.08%**, with a median return time of **177 days**. 
-
-They are also the primary driver of revenue: while representing around **25% of all customers**, they consistently generate **over 60% of total revenue** each year.
-
-Across all years, the **6–12 month period** remains the most critical window for repeat purchases.
-
-At the same time, low-value customers show relatively weak retention, with low repeat rates and longer return times, indicating an opportunity for targeted engagement and conversion strategies.
+These medians are not comparable across cohorts (see Limitations).
 
 ### Recommendations
+- Repeat orders do not concentrate in a particular month, so retention offers can be tested at several points in the first year rather than at one "critical window".
+- Most customers (about 82%) do not return within 12 months, which is where the largest potential lies.
+- Before concluding that retention improved, check why the 2020 cohort has such a low rate.
 
-- Focus retention efforts on the **first 6–12 months** after the initial purchase  
-- Prioritize **high-value customers** as the main driver of revenue  
-- Analyze customer behavior before and during the repeat purchase stage  
-- Develop strategies to **convert low-value and medium-value customers** into repeat buyers  
+# Data
+
+## Definitions
+- Cohort = year of the customer's first order. Only customers acquired in 2020–2022 are included.
+- RPR = share of cohort customers with a second order on a later date within 12 months of the first order.
+- Customer groups: Low = bottom 25%, High = top 25%, Medium = the rest, by revenue in the 12 months after the first order, within each cohort year.
+- Time to second order = days between the first and the second order date.
+
+## Limitations
+- Groups are defined by revenue in the first 12 months, which includes repeat purchases. A customer who returned is more likely to land in the high-value group, so the higher repeat rate of that group is partly built into the definition. The 25% of customers generating over 60% of revenue also follows from this definition. The group results describe the data and do not show that high-value customers are more loyal.
+- Time to second order uses orders up to the end of 2023. Later cohorts have shorter observation windows, so their medians are lower by construction (765 → 224 days). Use the 12-month RPR to compare cohorts.
+- The data show differences between cohorts but not their causes.
 
